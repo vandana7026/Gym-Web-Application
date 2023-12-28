@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Gym Web Application</title>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .modal img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gym Web Application</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to Our Gym</h2>
+        <p>Your fitness journey starts here. Join us for a healthier lifestyle!</p>
+        <a href="#services" class="cta-button">Explore Services</a>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>Discover a variety of fitness services tailored to your needs.</p>
+        <ul>
+            <li>
+                <h3>Personal Training</h3>
+                <p>Get one-on-one personalized training sessions with our experienced trainers to achieve your fitness goals.</p>
+                <button onclick="openModal('Personal Training', 'personal_training.jpg')">Learn More</button>
+            </li>
+            <li>
+                <h3>Group Classes</h3>
+                <p>Join our dynamic group classes for a fun and motivating workout experience with a supportive community.</p>
+                <button onclick="openModal('Group Classes', 'group_classes.jpg')">Learn More</button>
+            </li>
+            <li>
+                <h3>Nutrition Counseling</h3>
+                <p>Receive expert advice on nutrition and dietary planning to complement your fitness journey.</p>
+                <button onclick="openModal('Nutrition Counseling', 'nutrition_counseling.jpg')">Learn More</button>
+            </li>
+        </ul>
+    </section>
+
+    <div id="myModal" class="modal">
+        <span onclick="closeModal()" style="cursor: pointer; float: right;">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <img id="modalImage" alt="Service Image">
+        <p id="modalContent"></p>
+    </div>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Learn about our dedicated team and our mission to promote a healthy lifestyle.</p>
+        <p>We believe in making fitness accessible to everyone.</p>
+    </section>
+
+<section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-container">
+        <button class="slider-button" onclick="showPreviousImage()">❮</button>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="gym_image_1.jpg" alt="Gym Facility 1">
+            </div>
+            <div class="gallery-item">
+                <img src="gym_image_2.jpg" alt="Gym Facility 2">
+            </div>
+            <div class="gallery-item">
+                <img src="gym_image_3.jpg" alt="Gym Facility 3">
+            </div>
+            <div class="gallery-item">
+                <img src="gym_image_4.jpg" alt="Gym Facility 4">
+            </div>
+        </div>
+        <button class="slider-button" onclick="showNextImage()">❯</button>
+    </div>
+</section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or want to get in touch? Reach out to us!</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Gym Web Application</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        function openModal(title, imageName) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalImage').src = imageName;
+            document.getElementById('modalContent').textContent = getModalContent(title);
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function getModalContent(title) {
+            if (title === 'Personal Training') {
+                return 'Our Personal Training services provide a bespoke fitness experience, crafted to meet your individual aspirations. With our certified trainers, you will engage in personalized sessions that cater to your fitness goals, receiving expert guidance and unwavering motivation. ';
+            } else if (title === 'Group Classes') {
+                return 'Join our dynamic Group Classes for a vibrant and motivating fitness experience. Led by experienced instructors, our classes offer a supportive community atmosphere to enhance your workout. Whether you prefer high-energy cardio sessions or mind-body practices like yoga, our diverse range of classes caters to various fitness preferences. ';
+            } else if (title === 'Nutrition Counseling') {
+                return 'Embark on a holistic wellness journey with our Nutrition Counseling services, designed to optimize your dietary habits. Our certified nutritionists provide personalized guidance, tailoring plans to meet your specific health objectives. Receive expert advice on balanced nutrition, meal planning, and lifestyle adjustments, empowering you to make informed choices for sustained well-being.';
+            } else {
+                return 'Additional information';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('myModal')) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
